@@ -4,7 +4,7 @@ Project of a LALR(1) C- (C Minus) compiler designed for a specific architecture 
 
 The synthesis phase (intermediate code, assembly and binary code generators), were implemented separately.
 
-* The Processor project can be find [here](https://github.com/LZafiro/ECOMP---UNIFESP/tree/master/ECOMP%20-%20Full%20Computer%20Dev.%20Laboratories/mipsBasedProcessor).
+* The Processor project can be find [here](https://github.com/LZafiro/32-bits-MIPS-Based-Processor).
 
 The project was developed for some laboratories of the undergraduate course in Computer Engineering at the Federal University of São Paulo.
 
