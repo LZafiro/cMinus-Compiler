@@ -1,0 +1,1527 @@
+Terminals unused in grammar
+
+   ERR
+   FIM
+
+
+State 120 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: programa $end
+
+    1 programa: declaracao_lista
+
+    2 declaracao_lista: declaracao_lista declaracao
+    3                 | declaracao
+
+    4 declaracao: var_declaracao
+    5           | fun_declaracao
+
+    6 id: ID
+
+    7 var_declaracao: INT id PEV
+    8               | INT id COLCHETEABRE num COLCHETEFECHA PEV
+    9               | VOID id PEV
+   10               | VOID id COLCHETEABRE num COLCHETEFECHA PEV
+
+   11 num: NUM
+
+   12 fun_declaracao: INT id APR params FPR composto_decl
+   13               | VOID id APR params FPR composto_decl
+
+   14 params: param_lista
+   15       | VOID
+
+   16 param_lista: param_lista VIRGULA param
+   17            | param
+
+   18 param: INT id
+   19      | INT id COLCHETEABRE COLCHETEFECHA
+   20      | VOID id
+   21      | VOID id COLCHETEABRE COLCHETEFECHA
+
+   22 composto_decl: CHAVESABRE local_declaracoes statement_lista CHAVESFECHA
+   23              | CHAVESABRE local_declaracoes CHAVESFECHA
+   24              | CHAVESABRE statement_lista CHAVESFECHA
+   25              | CHAVESABRE CHAVESFECHA
+
+   26 local_declaracoes: local_declaracoes var_declaracao
+   27                  | var_declaracao
+
+   28 statement_lista: statement_lista statement
+   29                | statement
+
+   30 statement: expressao_decl
+   31          | composto_decl
+   32          | selecao_decl
+   33          | iteracao_decl
+   34          | retorno_decl
+
+   35 expressao_decl: expressao PEV
+   36               | PEV
+
+   37 selecao_decl: IF APR expressao FPR statement
+   38             | IF APR expressao FPR statement ELSE statement
+
+   39 iteracao_decl: WHILE APR expressao FPR statement
+
+   40 retorno_decl: RETURN PEV
+   41             | RETURN expressao PEV
+
+   42 expressao: var IGL expressao
+   43          | simples_expressao
+
+   44 var: id
+   45    | id COLCHETEABRE expressao COLCHETEFECHA
+
+   46 simples_expressao: soma_expressao relacional soma_expressao
+   47                  | soma_expressao
+
+   48 relacional: MENORIGUAL
+   49           | MENOR
+   50           | MAIOR
+   51           | MAIORIGUAL
+   52           | IGUALIGUAL
+   53           | DIFERENTE
+
+   54 soma_expressao: soma_expressao soma termo
+   55               | termo
+
+   56 soma: SOM
+   57     | SUB
+
+   58 termo: termo mult fator
+   59      | fator
+
+   60 mult: MUL
+   61     | DIV
+
+   62 fator: APR expressao FPR
+   63      | var
+   64      | ativacao
+   65      | num
+
+   66 ativacao: id APR arg_lista FPR
+   67         | id APR FPR
+
+   68 arg_lista: arg_lista VIRGULA expressao
+   69          | expressao
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+IF (258) 37 38
+ELSE (259) 38
+RETURN (260) 40 41
+INT (261) 7 8 12 18 19
+VOID (262) 9 10 13 15 20 21
+WHILE (263) 39
+ID (264) 6
+NUM (265) 11
+IGL (266) 42
+PEV (267) 7 8 9 10 35 36 40 41
+APR (268) 12 13 37 38 39 62 66 67
+FPR (269) 12 13 37 38 39 62 66 67
+MENOR (270) 49
+MENORIGUAL (271) 48
+MAIOR (272) 50
+MAIORIGUAL (273) 51
+IGUALIGUAL (274) 52
+DIFERENTE (275) 53
+VIRGULA (276) 16 68
+COLCHETEABRE (277) 8 10 19 21 45
+COLCHETEFECHA (278) 8 10 19 21 45
+CHAVESABRE (279) 22 23 24 25
+CHAVESFECHA (280) 22 23 24 25
+SOM (281) 56
+SUB (282) 57
+MUL (283) 60
+DIV (284) 61
+ERR (285)
+FIM (286)
+
+
+Nonterminals, with rules where they appear
+
+$accept (32)
+    on left: 0
+programa (33)
+    on left: 1, on right: 0
+declaracao_lista (34)
+    on left: 2 3, on right: 1 2
+declaracao (35)
+    on left: 4 5, on right: 2 3
+id (36)
+    on left: 6, on right: 7 8 9 10 12 13 18 19 20 21 44 45 66 67
+var_declaracao (37)
+    on left: 7 8 9 10, on right: 4 26 27
+num (38)
+    on left: 11, on right: 8 10 65
+fun_declaracao (39)
+    on left: 12 13, on right: 5
+params (40)
+    on left: 14 15, on right: 12 13
+param_lista (41)
+    on left: 16 17, on right: 14 16
+param (42)
+    on left: 18 19 20 21, on right: 16 17
+composto_decl (43)
+    on left: 22 23 24 25, on right: 12 13 31
+local_declaracoes (44)
+    on left: 26 27, on right: 22 23 26
+statement_lista (45)
+    on left: 28 29, on right: 22 24 28
+statement (46)
+    on left: 30 31 32 33 34, on right: 28 29 37 38 39
+expressao_decl (47)
+    on left: 35 36, on right: 30
+selecao_decl (48)
+    on left: 37 38, on right: 32
+iteracao_decl (49)
+    on left: 39, on right: 33
+retorno_decl (50)
+    on left: 40 41, on right: 34
+expressao (51)
+    on left: 42 43, on right: 35 37 38 39 41 42 45 62 68 69
+var (52)
+    on left: 44 45, on right: 42 63
+simples_expressao (53)
+    on left: 46 47, on right: 43
+relacional (54)
+    on left: 48 49 50 51 52 53, on right: 46
+soma_expressao (55)
+    on left: 54 55, on right: 46 47 54
+soma (56)
+    on left: 56 57, on right: 54
+termo (57)
+    on left: 58 59, on right: 54 55 58
+mult (58)
+    on left: 60 61, on right: 58
+fator (59)
+    on left: 62 63 64 65, on right: 58 59
+ativacao (60)
+    on left: 66 67, on right: 64
+arg_lista (61)
+    on left: 68 69, on right: 66 68
+
+
+State 0
+
+    0 $accept: . programa $end
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 2
+
+    programa          go to state 3
+    declaracao_lista  go to state 4
+    declaracao        go to state 5
+    var_declaracao    go to state 6
+    fun_declaracao    go to state 7
+
+
+State 1
+
+    7 var_declaracao: INT . id PEV
+    8               | INT . id COLCHETEABRE num COLCHETEFECHA PEV
+   12 fun_declaracao: INT . id APR params FPR composto_decl
+
+    ID  shift, and go to state 8
+
+    id  go to state 9
+
+
+State 2
+
+    9 var_declaracao: VOID . id PEV
+   10               | VOID . id COLCHETEABRE num COLCHETEFECHA PEV
+   13 fun_declaracao: VOID . id APR params FPR composto_decl
+
+    ID  shift, and go to state 8
+
+    id  go to state 10
+
+
+State 3
+
+    0 $accept: programa . $end
+
+    $end  shift, and go to state 11
+
+
+State 4
+
+    1 programa: declaracao_lista .
+    2 declaracao_lista: declaracao_lista . declaracao
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 2
+
+    $default  reduce using rule 1 (programa)
+
+    declaracao      go to state 12
+    var_declaracao  go to state 6
+    fun_declaracao  go to state 7
+
+
+State 5
+
+    3 declaracao_lista: declaracao .
+
+    $default  reduce using rule 3 (declaracao_lista)
+
+
+State 6
+
+    4 declaracao: var_declaracao .
+
+    $default  reduce using rule 4 (declaracao)
+
+
+State 7
+
+    5 declaracao: fun_declaracao .
+
+    $default  reduce using rule 5 (declaracao)
+
+
+State 8
+
+    6 id: ID .
+
+    $default  reduce using rule 6 (id)
+
+
+State 9
+
+    7 var_declaracao: INT id . PEV
+    8               | INT id . COLCHETEABRE num COLCHETEFECHA PEV
+   12 fun_declaracao: INT id . APR params FPR composto_decl
+
+    PEV           shift, and go to state 13
+    APR           shift, and go to state 14
+    COLCHETEABRE  shift, and go to state 15
+
+
+State 10
+
+    9 var_declaracao: VOID id . PEV
+   10               | VOID id . COLCHETEABRE num COLCHETEFECHA PEV
+   13 fun_declaracao: VOID id . APR params FPR composto_decl
+
+    PEV           shift, and go to state 16
+    APR           shift, and go to state 17
+    COLCHETEABRE  shift, and go to state 18
+
+
+State 11
+
+    0 $accept: programa $end .
+
+    $default  accept
+
+
+State 12
+
+    2 declaracao_lista: declaracao_lista declaracao .
+
+    $default  reduce using rule 2 (declaracao_lista)
+
+
+State 13
+
+    7 var_declaracao: INT id PEV .
+
+    $default  reduce using rule 7 (var_declaracao)
+
+
+State 14
+
+   12 fun_declaracao: INT id APR . params FPR composto_decl
+
+    INT   shift, and go to state 19
+    VOID  shift, and go to state 20
+
+    params       go to state 21
+    param_lista  go to state 22
+    param        go to state 23
+
+
+State 15
+
+    8 var_declaracao: INT id COLCHETEABRE . num COLCHETEFECHA PEV
+
+    NUM  shift, and go to state 24
+
+    num  go to state 25
+
+
+State 16
+
+    9 var_declaracao: VOID id PEV .
+
+    $default  reduce using rule 9 (var_declaracao)
+
+
+State 17
+
+   13 fun_declaracao: VOID id APR . params FPR composto_decl
+
+    INT   shift, and go to state 19
+    VOID  shift, and go to state 20
+
+    params       go to state 26
+    param_lista  go to state 22
+    param        go to state 23
+
+
+State 18
+
+   10 var_declaracao: VOID id COLCHETEABRE . num COLCHETEFECHA PEV
+
+    NUM  shift, and go to state 24
+
+    num  go to state 27
+
+
+State 19
+
+   18 param: INT . id
+   19      | INT . id COLCHETEABRE COLCHETEFECHA
+
+    ID  shift, and go to state 8
+
+    id  go to state 28
+
+
+State 20
+
+   15 params: VOID .
+   20 param: VOID . id
+   21      | VOID . id COLCHETEABRE COLCHETEFECHA
+
+    ID  shift, and go to state 8
+
+    $default  reduce using rule 15 (params)
+
+    id  go to state 29
+
+
+State 21
+
+   12 fun_declaracao: INT id APR params . FPR composto_decl
+
+    FPR  shift, and go to state 30
+
+
+State 22
+
+   14 params: param_lista .
+   16 param_lista: param_lista . VIRGULA param
+
+    VIRGULA  shift, and go to state 31
+
+    $default  reduce using rule 14 (params)
+
+
+State 23
+
+   17 param_lista: param .
+
+    $default  reduce using rule 17 (param_lista)
+
+
+State 24
+
+   11 num: NUM .
+
+    $default  reduce using rule 11 (num)
+
+
+State 25
+
+    8 var_declaracao: INT id COLCHETEABRE num . COLCHETEFECHA PEV
+
+    COLCHETEFECHA  shift, and go to state 32
+
+
+State 26
+
+   13 fun_declaracao: VOID id APR params . FPR composto_decl
+
+    FPR  shift, and go to state 33
+
+
+State 27
+
+   10 var_declaracao: VOID id COLCHETEABRE num . COLCHETEFECHA PEV
+
+    COLCHETEFECHA  shift, and go to state 34
+
+
+State 28
+
+   18 param: INT id .
+   19      | INT id . COLCHETEABRE COLCHETEFECHA
+
+    COLCHETEABRE  shift, and go to state 35
+
+    $default  reduce using rule 18 (param)
+
+
+State 29
+
+   20 param: VOID id .
+   21      | VOID id . COLCHETEABRE COLCHETEFECHA
+
+    COLCHETEABRE  shift, and go to state 36
+
+    $default  reduce using rule 20 (param)
+
+
+State 30
+
+   12 fun_declaracao: INT id APR params FPR . composto_decl
+
+    CHAVESABRE  shift, and go to state 37
+
+    composto_decl  go to state 38
+
+
+State 31
+
+   16 param_lista: param_lista VIRGULA . param
+
+    INT   shift, and go to state 19
+    VOID  shift, and go to state 39
+
+    param  go to state 40
+
+
+State 32
+
+    8 var_declaracao: INT id COLCHETEABRE num COLCHETEFECHA . PEV
+
+    PEV  shift, and go to state 41
+
+
+State 33
+
+   13 fun_declaracao: VOID id APR params FPR . composto_decl
+
+    CHAVESABRE  shift, and go to state 37
+
+    composto_decl  go to state 42
+
+
+State 34
+
+   10 var_declaracao: VOID id COLCHETEABRE num COLCHETEFECHA . PEV
+
+    PEV  shift, and go to state 43
+
+
+State 35
+
+   19 param: INT id COLCHETEABRE . COLCHETEFECHA
+
+    COLCHETEFECHA  shift, and go to state 44
+
+
+State 36
+
+   21 param: VOID id COLCHETEABRE . COLCHETEFECHA
+
+    COLCHETEFECHA  shift, and go to state 45
+
+
+State 37
+
+   22 composto_decl: CHAVESABRE . local_declaracoes statement_lista CHAVESFECHA
+   23              | CHAVESABRE . local_declaracoes CHAVESFECHA
+   24              | CHAVESABRE . statement_lista CHAVESFECHA
+   25              | CHAVESABRE . CHAVESFECHA
+
+    IF           shift, and go to state 46
+    RETURN       shift, and go to state 47
+    INT          shift, and go to state 48
+    VOID         shift, and go to state 49
+    WHILE        shift, and go to state 50
+    ID           shift, and go to state 8
+    NUM          shift, and go to state 24
+    PEV          shift, and go to state 51
+    APR          shift, and go to state 52
+    CHAVESABRE   shift, and go to state 37
+    CHAVESFECHA  shift, and go to state 53
+
+    id                 go to state 54
+    var_declaracao     go to state 55
+    num                go to state 56
+    composto_decl      go to state 57
+    local_declaracoes  go to state 58
+    statement_lista    go to state 59
+    statement          go to state 60
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 38
+
+   12 fun_declaracao: INT id APR params FPR composto_decl .
+
+    $default  reduce using rule 12 (fun_declaracao)
+
+
+State 39
+
+   20 param: VOID . id
+   21      | VOID . id COLCHETEABRE COLCHETEFECHA
+
+    ID  shift, and go to state 8
+
+    id  go to state 29
+
+
+State 40
+
+   16 param_lista: param_lista VIRGULA param .
+
+    $default  reduce using rule 16 (param_lista)
+
+
+State 41
+
+    8 var_declaracao: INT id COLCHETEABRE num COLCHETEFECHA PEV .
+
+    $default  reduce using rule 8 (var_declaracao)
+
+
+State 42
+
+   13 fun_declaracao: VOID id APR params FPR composto_decl .
+
+    $default  reduce using rule 13 (fun_declaracao)
+
+
+State 43
+
+   10 var_declaracao: VOID id COLCHETEABRE num COLCHETEFECHA PEV .
+
+    $default  reduce using rule 10 (var_declaracao)
+
+
+State 44
+
+   19 param: INT id COLCHETEABRE COLCHETEFECHA .
+
+    $default  reduce using rule 19 (param)
+
+
+State 45
+
+   21 param: VOID id COLCHETEABRE COLCHETEFECHA .
+
+    $default  reduce using rule 21 (param)
+
+
+State 46
+
+   37 selecao_decl: IF . APR expressao FPR statement
+   38             | IF . APR expressao FPR statement ELSE statement
+
+    APR  shift, and go to state 72
+
+
+State 47
+
+   40 retorno_decl: RETURN . PEV
+   41             | RETURN . expressao PEV
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    PEV  shift, and go to state 73
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 74
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 48
+
+    7 var_declaracao: INT . id PEV
+    8               | INT . id COLCHETEABRE num COLCHETEFECHA PEV
+
+    ID  shift, and go to state 8
+
+    id  go to state 75
+
+
+State 49
+
+    9 var_declaracao: VOID . id PEV
+   10               | VOID . id COLCHETEABRE num COLCHETEFECHA PEV
+
+    ID  shift, and go to state 8
+
+    id  go to state 76
+
+
+State 50
+
+   39 iteracao_decl: WHILE . APR expressao FPR statement
+
+    APR  shift, and go to state 77
+
+
+State 51
+
+   36 expressao_decl: PEV .
+
+    $default  reduce using rule 36 (expressao_decl)
+
+
+State 52
+
+   62 fator: APR . expressao FPR
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 78
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 53
+
+   25 composto_decl: CHAVESABRE CHAVESFECHA .
+
+    $default  reduce using rule 25 (composto_decl)
+
+
+State 54
+
+   44 var: id .
+   45    | id . COLCHETEABRE expressao COLCHETEFECHA
+   66 ativacao: id . APR arg_lista FPR
+   67         | id . APR FPR
+
+    APR           shift, and go to state 79
+    COLCHETEABRE  shift, and go to state 80
+
+    $default  reduce using rule 44 (var)
+
+
+State 55
+
+   27 local_declaracoes: var_declaracao .
+
+    $default  reduce using rule 27 (local_declaracoes)
+
+
+State 56
+
+   65 fator: num .
+
+    $default  reduce using rule 65 (fator)
+
+
+State 57
+
+   31 statement: composto_decl .
+
+    $default  reduce using rule 31 (statement)
+
+
+State 58
+
+   22 composto_decl: CHAVESABRE local_declaracoes . statement_lista CHAVESFECHA
+   23              | CHAVESABRE local_declaracoes . CHAVESFECHA
+   26 local_declaracoes: local_declaracoes . var_declaracao
+
+    IF           shift, and go to state 46
+    RETURN       shift, and go to state 47
+    INT          shift, and go to state 48
+    VOID         shift, and go to state 49
+    WHILE        shift, and go to state 50
+    ID           shift, and go to state 8
+    NUM          shift, and go to state 24
+    PEV          shift, and go to state 51
+    APR          shift, and go to state 52
+    CHAVESABRE   shift, and go to state 37
+    CHAVESFECHA  shift, and go to state 81
+
+    id                 go to state 54
+    var_declaracao     go to state 82
+    num                go to state 56
+    composto_decl      go to state 57
+    statement_lista    go to state 83
+    statement          go to state 60
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 59
+
+   24 composto_decl: CHAVESABRE statement_lista . CHAVESFECHA
+   28 statement_lista: statement_lista . statement
+
+    IF           shift, and go to state 46
+    RETURN       shift, and go to state 47
+    WHILE        shift, and go to state 50
+    ID           shift, and go to state 8
+    NUM          shift, and go to state 24
+    PEV          shift, and go to state 51
+    APR          shift, and go to state 52
+    CHAVESABRE   shift, and go to state 37
+    CHAVESFECHA  shift, and go to state 84
+
+    id                 go to state 54
+    num                go to state 56
+    composto_decl      go to state 57
+    statement          go to state 85
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 60
+
+   29 statement_lista: statement .
+
+    $default  reduce using rule 29 (statement_lista)
+
+
+State 61
+
+   30 statement: expressao_decl .
+
+    $default  reduce using rule 30 (statement)
+
+
+State 62
+
+   32 statement: selecao_decl .
+
+    $default  reduce using rule 32 (statement)
+
+
+State 63
+
+   33 statement: iteracao_decl .
+
+    $default  reduce using rule 33 (statement)
+
+
+State 64
+
+   34 statement: retorno_decl .
+
+    $default  reduce using rule 34 (statement)
+
+
+State 65
+
+   35 expressao_decl: expressao . PEV
+
+    PEV  shift, and go to state 86
+
+
+State 66
+
+   42 expressao: var . IGL expressao
+   63 fator: var .
+
+    IGL  shift, and go to state 87
+
+    $default  reduce using rule 63 (fator)
+
+
+State 67
+
+   43 expressao: simples_expressao .
+
+    $default  reduce using rule 43 (expressao)
+
+
+State 68
+
+   46 simples_expressao: soma_expressao . relacional soma_expressao
+   47                  | soma_expressao .
+   54 soma_expressao: soma_expressao . soma termo
+
+    MENOR       shift, and go to state 88
+    MENORIGUAL  shift, and go to state 89
+    MAIOR       shift, and go to state 90
+    MAIORIGUAL  shift, and go to state 91
+    IGUALIGUAL  shift, and go to state 92
+    DIFERENTE   shift, and go to state 93
+    SOM         shift, and go to state 94
+    SUB         shift, and go to state 95
+
+    $default  reduce using rule 47 (simples_expressao)
+
+    relacional  go to state 96
+    soma        go to state 97
+
+
+State 69
+
+   55 soma_expressao: termo .
+   58 termo: termo . mult fator
+
+    MUL  shift, and go to state 98
+    DIV  shift, and go to state 99
+
+    $default  reduce using rule 55 (soma_expressao)
+
+    mult  go to state 100
+
+
+State 70
+
+   59 termo: fator .
+
+    $default  reduce using rule 59 (termo)
+
+
+State 71
+
+   64 fator: ativacao .
+
+    $default  reduce using rule 64 (fator)
+
+
+State 72
+
+   37 selecao_decl: IF APR . expressao FPR statement
+   38             | IF APR . expressao FPR statement ELSE statement
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 101
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 73
+
+   40 retorno_decl: RETURN PEV .
+
+    $default  reduce using rule 40 (retorno_decl)
+
+
+State 74
+
+   41 retorno_decl: RETURN expressao . PEV
+
+    PEV  shift, and go to state 102
+
+
+State 75
+
+    7 var_declaracao: INT id . PEV
+    8               | INT id . COLCHETEABRE num COLCHETEFECHA PEV
+
+    PEV           shift, and go to state 13
+    COLCHETEABRE  shift, and go to state 15
+
+
+State 76
+
+    9 var_declaracao: VOID id . PEV
+   10               | VOID id . COLCHETEABRE num COLCHETEFECHA PEV
+
+    PEV           shift, and go to state 16
+    COLCHETEABRE  shift, and go to state 18
+
+
+State 77
+
+   39 iteracao_decl: WHILE APR . expressao FPR statement
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 103
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 78
+
+   62 fator: APR expressao . FPR
+
+    FPR  shift, and go to state 104
+
+
+State 79
+
+   66 ativacao: id APR . arg_lista FPR
+   67         | id APR . FPR
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+    FPR  shift, and go to state 105
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 106
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+    arg_lista          go to state 107
+
+
+State 80
+
+   45 var: id COLCHETEABRE . expressao COLCHETEFECHA
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 108
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 81
+
+   23 composto_decl: CHAVESABRE local_declaracoes CHAVESFECHA .
+
+    $default  reduce using rule 23 (composto_decl)
+
+
+State 82
+
+   26 local_declaracoes: local_declaracoes var_declaracao .
+
+    $default  reduce using rule 26 (local_declaracoes)
+
+
+State 83
+
+   22 composto_decl: CHAVESABRE local_declaracoes statement_lista . CHAVESFECHA
+   28 statement_lista: statement_lista . statement
+
+    IF           shift, and go to state 46
+    RETURN       shift, and go to state 47
+    WHILE        shift, and go to state 50
+    ID           shift, and go to state 8
+    NUM          shift, and go to state 24
+    PEV          shift, and go to state 51
+    APR          shift, and go to state 52
+    CHAVESABRE   shift, and go to state 37
+    CHAVESFECHA  shift, and go to state 109
+
+    id                 go to state 54
+    num                go to state 56
+    composto_decl      go to state 57
+    statement          go to state 85
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 84
+
+   24 composto_decl: CHAVESABRE statement_lista CHAVESFECHA .
+
+    $default  reduce using rule 24 (composto_decl)
+
+
+State 85
+
+   28 statement_lista: statement_lista statement .
+
+    $default  reduce using rule 28 (statement_lista)
+
+
+State 86
+
+   35 expressao_decl: expressao PEV .
+
+    $default  reduce using rule 35 (expressao_decl)
+
+
+State 87
+
+   42 expressao: var IGL . expressao
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 110
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 88
+
+   49 relacional: MENOR .
+
+    $default  reduce using rule 49 (relacional)
+
+
+State 89
+
+   48 relacional: MENORIGUAL .
+
+    $default  reduce using rule 48 (relacional)
+
+
+State 90
+
+   50 relacional: MAIOR .
+
+    $default  reduce using rule 50 (relacional)
+
+
+State 91
+
+   51 relacional: MAIORIGUAL .
+
+    $default  reduce using rule 51 (relacional)
+
+
+State 92
+
+   52 relacional: IGUALIGUAL .
+
+    $default  reduce using rule 52 (relacional)
+
+
+State 93
+
+   53 relacional: DIFERENTE .
+
+    $default  reduce using rule 53 (relacional)
+
+
+State 94
+
+   56 soma: SOM .
+
+    $default  reduce using rule 56 (soma)
+
+
+State 95
+
+   57 soma: SUB .
+
+    $default  reduce using rule 57 (soma)
+
+
+State 96
+
+   46 simples_expressao: soma_expressao relacional . soma_expressao
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id              go to state 54
+    num             go to state 56
+    var             go to state 111
+    soma_expressao  go to state 112
+    termo           go to state 69
+    fator           go to state 70
+    ativacao        go to state 71
+
+
+State 97
+
+   54 soma_expressao: soma_expressao soma . termo
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id        go to state 54
+    num       go to state 56
+    var       go to state 111
+    termo     go to state 113
+    fator     go to state 70
+    ativacao  go to state 71
+
+
+State 98
+
+   60 mult: MUL .
+
+    $default  reduce using rule 60 (mult)
+
+
+State 99
+
+   61 mult: DIV .
+
+    $default  reduce using rule 61 (mult)
+
+
+State 100
+
+   58 termo: termo mult . fator
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id        go to state 54
+    num       go to state 56
+    var       go to state 111
+    fator     go to state 114
+    ativacao  go to state 71
+
+
+State 101
+
+   37 selecao_decl: IF APR expressao . FPR statement
+   38             | IF APR expressao . FPR statement ELSE statement
+
+    FPR  shift, and go to state 115
+
+
+State 102
+
+   41 retorno_decl: RETURN expressao PEV .
+
+    $default  reduce using rule 41 (retorno_decl)
+
+
+State 103
+
+   39 iteracao_decl: WHILE APR expressao . FPR statement
+
+    FPR  shift, and go to state 116
+
+
+State 104
+
+   62 fator: APR expressao FPR .
+
+    $default  reduce using rule 62 (fator)
+
+
+State 105
+
+   67 ativacao: id APR FPR .
+
+    $default  reduce using rule 67 (ativacao)
+
+
+State 106
+
+   69 arg_lista: expressao .
+
+    $default  reduce using rule 69 (arg_lista)
+
+
+State 107
+
+   66 ativacao: id APR arg_lista . FPR
+   68 arg_lista: arg_lista . VIRGULA expressao
+
+    FPR      shift, and go to state 117
+    VIRGULA  shift, and go to state 118
+
+
+State 108
+
+   45 var: id COLCHETEABRE expressao . COLCHETEFECHA
+
+    COLCHETEFECHA  shift, and go to state 119
+
+
+State 109
+
+   22 composto_decl: CHAVESABRE local_declaracoes statement_lista CHAVESFECHA .
+
+    $default  reduce using rule 22 (composto_decl)
+
+
+State 110
+
+   42 expressao: var IGL expressao .
+
+    $default  reduce using rule 42 (expressao)
+
+
+State 111
+
+   63 fator: var .
+
+    $default  reduce using rule 63 (fator)
+
+
+State 112
+
+   46 simples_expressao: soma_expressao relacional soma_expressao .
+   54 soma_expressao: soma_expressao . soma termo
+
+    SOM  shift, and go to state 94
+    SUB  shift, and go to state 95
+
+    $default  reduce using rule 46 (simples_expressao)
+
+    soma  go to state 97
+
+
+State 113
+
+   54 soma_expressao: soma_expressao soma termo .
+   58 termo: termo . mult fator
+
+    MUL  shift, and go to state 98
+    DIV  shift, and go to state 99
+
+    $default  reduce using rule 54 (soma_expressao)
+
+    mult  go to state 100
+
+
+State 114
+
+   58 termo: termo mult fator .
+
+    $default  reduce using rule 58 (termo)
+
+
+State 115
+
+   37 selecao_decl: IF APR expressao FPR . statement
+   38             | IF APR expressao FPR . statement ELSE statement
+
+    IF          shift, and go to state 46
+    RETURN      shift, and go to state 47
+    WHILE       shift, and go to state 50
+    ID          shift, and go to state 8
+    NUM         shift, and go to state 24
+    PEV         shift, and go to state 51
+    APR         shift, and go to state 52
+    CHAVESABRE  shift, and go to state 37
+
+    id                 go to state 54
+    num                go to state 56
+    composto_decl      go to state 57
+    statement          go to state 120
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 116
+
+   39 iteracao_decl: WHILE APR expressao FPR . statement
+
+    IF          shift, and go to state 46
+    RETURN      shift, and go to state 47
+    WHILE       shift, and go to state 50
+    ID          shift, and go to state 8
+    NUM         shift, and go to state 24
+    PEV         shift, and go to state 51
+    APR         shift, and go to state 52
+    CHAVESABRE  shift, and go to state 37
+
+    id                 go to state 54
+    num                go to state 56
+    composto_decl      go to state 57
+    statement          go to state 121
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 117
+
+   66 ativacao: id APR arg_lista FPR .
+
+    $default  reduce using rule 66 (ativacao)
+
+
+State 118
+
+   68 arg_lista: arg_lista VIRGULA . expressao
+
+    ID   shift, and go to state 8
+    NUM  shift, and go to state 24
+    APR  shift, and go to state 52
+
+    id                 go to state 54
+    num                go to state 56
+    expressao          go to state 122
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 119
+
+   45 var: id COLCHETEABRE expressao COLCHETEFECHA .
+
+    $default  reduce using rule 45 (var)
+
+
+State 120
+
+   37 selecao_decl: IF APR expressao FPR statement .
+   38             | IF APR expressao FPR statement . ELSE statement
+
+    ELSE  shift, and go to state 123
+
+    ELSE      [reduce using rule 37 (selecao_decl)]
+    $default  reduce using rule 37 (selecao_decl)
+
+
+State 121
+
+   39 iteracao_decl: WHILE APR expressao FPR statement .
+
+    $default  reduce using rule 39 (iteracao_decl)
+
+
+State 122
+
+   68 arg_lista: arg_lista VIRGULA expressao .
+
+    $default  reduce using rule 68 (arg_lista)
+
+
+State 123
+
+   38 selecao_decl: IF APR expressao FPR statement ELSE . statement
+
+    IF          shift, and go to state 46
+    RETURN      shift, and go to state 47
+    WHILE       shift, and go to state 50
+    ID          shift, and go to state 8
+    NUM         shift, and go to state 24
+    PEV         shift, and go to state 51
+    APR         shift, and go to state 52
+    CHAVESABRE  shift, and go to state 37
+
+    id                 go to state 54
+    num                go to state 56
+    composto_decl      go to state 57
+    statement          go to state 124
+    expressao_decl     go to state 61
+    selecao_decl       go to state 62
+    iteracao_decl      go to state 63
+    retorno_decl       go to state 64
+    expressao          go to state 65
+    var                go to state 66
+    simples_expressao  go to state 67
+    soma_expressao     go to state 68
+    termo              go to state 69
+    fator              go to state 70
+    ativacao           go to state 71
+
+
+State 124
+
+   38 selecao_decl: IF APR expressao FPR statement ELSE statement .
+
+    $default  reduce using rule 38 (selecao_decl)
