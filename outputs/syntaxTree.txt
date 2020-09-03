@@ -1,137 +1,37 @@
   Type integer
-    Variável: vet
-  Type integer
-    Função minloc
+    Função gcd
       Type integer
-        Parametro: a
+        Parametro: u
       Type integer
-        Parametro: low
-      Type integer
-        Parametro: high
-      Type integer
-        Variável: i
-      Type integer
-        Variável: x
-      Type integer
-        Variável: k
-      Atribuição
-        Id: k
-        Id: low
-      Atribuição
-        Id: x
-        Vetor: a
-          Id: low
-      Atribuição
-        Id: i
-        Op: +
-          Id: low
-          Const: 1
-      While
-        Op: <
-          Id: i
-          Id: high
-        If
-          Op: <
-            Vetor: a
-              Id: i
-            Id: x
-          Atribuição
-            Id: x
-            Vetor: a
-              Id: i
-          Atribuição
-            Id: k
-            Id: i
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
-      Retorno        Id: k
-  Type void
-    Função sort
-      Type integer
-        Parametro: a
-      Type integer
-        Parametro: low
-      Type integer
-        Parametro: high
-      Type integer
-        Variável: i
-      Type integer
-        Variável: k
-      Atribuição
-        Id: i
-        Id: low
-      While
-        Op: <
-          Id: i
-          Op: -
-            Id: high
-            Const: 1
-        Type integer
-          Variável: t
-        Atribuição
-          Id: k
-          Chamada de Função: minloc 
-            Id: a
-            Id: i
-            Id: high
-        Atribuição
-          Id: t
-          Vetor: a
-            Id: k
-        Atribuição
-          Vetor: a
-            Id: k
-          Vetor: a
-            Id: i
-        Atribuição
-          Vetor: a
-            Id: i
-          Id: t
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
+        Parametro: v
+      If
+        Op: ==
+          Id: v
+          Const: 0
+        Retorno          Id: u
+        Retorno          Chamada de Função: gcd 
+            Id: v
+            Op: -
+              Id: u
+              Op: *
+                Op: /
+                  Id: u
+                  Id: v
+                Id: v
   Type void
     Função main
       Type void
       Type integer
-        Variável: i
+        Variável: x
+      Type integer
+        Variável: y
       Atribuição
-        Id: i
-        Const: 0
-      While
-        Op: <
-          Id: i
-          Const: 10
-        Atribuição
-          Vetor: vet
-            Id: i
-          Chamada de Função: input 
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
-      Chamada de Função: sort 
-        Id: vet
-        Const: 0
-        Const: 10
+        Id: x
+        Chamada de Função: input 
       Atribuição
-        Id: i
-        Const: 0
-      While
-        Op: <
-          Id: i
-          Const: 10
-        Chamada de Função: output 
-          Vetor: vet
-            Id: i
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
+        Id: y
+        Chamada de Função: input 
+      Chamada de Função: output 
+        Chamada de Função: gcd 
+          Id: x
+          Id: y

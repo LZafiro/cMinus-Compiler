@@ -274,10 +274,6 @@ QuadrupleListElem statementGenerator(TreeNode *syntaxTree, QuadrupleListElem lis
     /* Temporary variables for the 'if' creation (local) */
     int tmp_iff1, tmp_iff2, tmp_lab1, tmp_lab2;
 
-    //printf("\n--->Entrou no statementGenerator\n");
-    //printf("---> %s\n", syntaxTree->attr.name);
-    //printf("---> %d\n", syntaxTree->kind.stmt);
-
     /* Selects the type of statement that the node corresponds */
     switch(syntaxTree->kind.stmt){
 
@@ -692,10 +688,6 @@ QuadrupleListElem expressionGenerator(TreeNode *syntaxTree, QuadrupleListElem li
     /* Temporary pointer to a new quadruple */
     QuadrupleListElem quad;
 
-    //printf("\n--->Entrou no expressionGenerator\n");
-    //printf("---> %s\n", syntaxTree->attr.name);
-    //printf("---> %d\n", syntaxTree->kind.exp);
-
     /* Selects the type of statement that the node corresponds */
     switch(syntaxTree->kind.exp){
     
@@ -1055,8 +1047,6 @@ QuadrupleListElem expressionGenerator(TreeNode *syntaxTree, QuadrupleListElem li
 
 QuadrupleListElem icGen(TreeNode *syntaxTree, QuadrupleListElem list){
 
-    //printf("\n--->Entrou no icGen\n");
-
     if(syntaxTree != NULL){
 
         /* Selects the node based on the type */
@@ -1116,7 +1106,7 @@ QuadrupleListElem intermediateCodeGenerator(TreeNode *syntaxTree){
     /* Calls the code generator function */
     list = icGen(syntaxTree, list);
 
-    /* Quadruple creation and setup (LOAD) */
+    /* Quadruple creation and setup (HALT) */
     //////////////////////////////////////////////////////////////
     quad = newQuadListElem();
     quad->quadruple->op = HALTc;
@@ -1134,4 +1124,4 @@ QuadrupleListElem intermediateCodeGenerator(TreeNode *syntaxTree){
     return(list);
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////*

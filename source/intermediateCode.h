@@ -47,7 +47,7 @@ typedef struct QuadListElem{
 } *QuadrupleListElem;
 /////////////////////////////////////////////////////////////////////////////////
 
-/* All function declarations and labbels for the intermediate code generation */
+/* All function declarations and labbel* for the intermediate code generation */
 /////////////////////////////////////////////////////////////////////////////////
 
 /* Function to create a new address element (returns a pointer for it) ok */
@@ -56,7 +56,7 @@ Address newAddress(); /* Remove */
 /* Function to create a new quadruple (returns a pointer to a quadruple) ok */
 Quadruple newQuad(); /* Remove */
 
-/* Function to create a new quadruple list elem(returns a pointer to a quadruple list elem) ok */
+/* Function to create a new **quadruple list elem(returns a pointer to a quadruple list elem) ok */
 QuadrupleListElem newQubashadListElem();
 
 /* Function that add the element to the list of quadruple element */
@@ -83,7 +83,7 @@ QuadrupleListElem argGenerator(TreeNode *synTree, QuadrupleListElem list);
 /* Function that evaluate a statement node kind (can be called for any node) */
 QuadrupleListElem statementGenerator(TreeNode *syntaxTree, QuadrupleListElem list);
 
-/* Function that evaluate a statement node kind (can be called for any node) */
+/* Function that evaluate a expression node kind (can be called for any node) */
 QuadrupleListElem expressionGenerator(TreeNode *syntaxTree, QuadrupleListElem list);
 
 /* Creates a string to the register name: $tx */
