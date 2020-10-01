@@ -70,6 +70,7 @@ typedef struct treeNode{
 			} attr;
     ExpType type; /* for type checking of exps */
 	int icTemp; /* Stores the intermediate code temporary register */
+	int idxReg; /* Stores the index register for a store instruction of an array */
 	
 	int paramQt; /* Store the number of parameters os a function -> only for funcK */
 				 /* If not necessary, remove and remove from utils.c */

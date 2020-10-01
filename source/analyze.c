@@ -186,6 +186,7 @@ void buildSymtab(TreeNode * syntaxTree)
 { 
    
   traverse(syntaxTree,insertNode,nullProc); 
+  
   if(st_lookup("main", "global","function") == -1)
    {
    		fprintf(listing,"Erro referência indefinida para main.\n");

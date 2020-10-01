@@ -500,22 +500,45 @@ QuadrupleListElem statementGenerator(TreeNode *syntaxTree, QuadrupleListElem lis
             quad = NULL;
             //////////////////////////////////////////////////////////////
      
-            /* Quadruple creation and setup (STORE) */
-            //////////////////////////////////////////////////////////////
-            quad = newQuadListElem();
-            quad->quadruple->op = STOREc;
-            quad->quadruple->addr1->kind = String;
-            quad->quadruple->addr1->contents.var.name = syntaxTree->child[0]->attr.name;
-            quad->quadruple->addr2->kind = String;
-            quad->quadruple->addr2->contents.var.name = createsRegName(syntaxTree->child[0]->icTemp);
-            quad->quadruple->addr3->kind = Empty;
+            /* If it is a array, the store must safe the register thar references to the index */
+            if(k1->kind.exp == vectK){
+                /* Quadruple creation and setup (STORE) */
+                //////////////////////////////////////////////////////////////
+                quad = newQuadListElem();
+                quad->quadruple->op = STOREc;
+                quad->quadruple->addr1->kind = String;
+                quad->quadruple->addr1->contents.var.name = syntaxTree->child[0]->attr.name;
+                quad->quadruple->addr2->kind = String;
+                quad->quadruple->addr2->contents.var.name = createsRegName(syntaxTree->child[0]->icTemp);
+                quad->quadruple->addr3->kind = String;
+                quad->quadruple->addr3->contents.var.name = createsRegName(syntaxTree->child[0]->idxReg);
 
-            /* Adds the quadruple to the list */
-            list = addElemToList(list, quad);
+                /* Adds the quadruple to the list */
+                list = addElemToList(list, quad);
 
-            /* Ereases the quadruple created */
-            quad = NULL;
-            //////////////////////////////////////////////////////////////
+                /* Ereases the quadruple created */
+                quad = NULL;
+                //////////////////////////////////////////////////////////////
+            }
+
+            else{
+                /* Quadruple creation and setup (STORE) */
+                //////////////////////////////////////////////////////////////
+                quad = newQuadListElem();
+                quad->quadruple->op = STOREc;
+                quad->quadruple->addr1->kind = String;
+                quad->quadruple->addr1->contents.var.name = syntaxTree->child[0]->attr.name;
+                quad->quadruple->addr2->kind = String;
+                quad->quadruple->addr2->contents.var.name = createsRegName(syntaxTree->child[0]->icTemp);
+                quad->quadruple->addr3->kind = Empty;
+
+                /* Adds the quadruple to the list */
+                list = addElemToList(list, quad);
+
+                /* Ereases the quadruple created */
+                quad = NULL;
+                //////////////////////////////////////////////////////////////
+            }
         break;
 
         case varK:
@@ -810,7 +833,7 @@ QuadrupleListElem expressionGenerator(TreeNode *syntaxTree, QuadrupleListElem li
                 break;
 
                 case IGUALIGUAL:
-                    /* Quadruple creation and setup (I) */
+                    /* Quadruple creation and setup (EQ) */
                     //////////////////////////////////////////////////////////////
                     quad = newQuadListElem();
                     quad->quadruple->op = EQc;
@@ -836,7 +859,7 @@ QuadrupleListElem expressionGenerator(TreeNode *syntaxTree, QuadrupleListElem li
                 break;
 
                 case DIFERENTE:
-                    /* Quadruple creation and setup (SOM) */
+                    /* Quadruple creation and setup (DIF) */
                     //////////////////////////////////////////////////////////////
                     quad = newQuadListElem();
                     quad->quadruple->op = DIFc;
@@ -1030,6 +1053,7 @@ QuadrupleListElem expressionGenerator(TreeNode *syntaxTree, QuadrupleListElem li
             quad->quadruple->addr2->contents.var.name = syntaxTree->attr.name;
             quad->quadruple->addr3->kind = String;
             quad->quadruple->addr3->contents.var.name = createsRegName(syntaxTree->child[0]->icTemp);
+            syntaxTree->idxReg = syntaxTree->child[0]->icTemp;
 
             /* Adds the quadruple to the list */
             list =addElemToList(list, quad);
