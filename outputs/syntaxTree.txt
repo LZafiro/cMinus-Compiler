@@ -65,6 +65,11 @@
       Atribuição
         Id: i
         Id: low
+      Atribuição
+        Id: teste
+        Op: +
+          Id: teste
+          Const: 1
       While
         Op: <
           Id: i

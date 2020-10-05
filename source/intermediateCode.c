@@ -29,8 +29,8 @@ char opNameList[28][7] = {"ADD", "SUB", "MUL", "DIV", "EQ", "DIF", "LT", "LET", 
 /////////////////////////////////////////////////////////////////////////////////
 
 void regIncrease(void){
-    /* Because there are 16 temporary registers */ 
-    if(cur_reg == 15)
+    /* Because there are 23 temporary registers */ 
+    if(cur_reg == 22)
         cur_reg = 0;
     
     else 

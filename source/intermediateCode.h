@@ -12,14 +12,14 @@ typedef enum{ADDc = 0, SUBc, MULc, DIVc, EQc, DIFc, LTc, LETc, GTc, GETc, ANDc, 
 ASSIGNc, ALLOCc, IMMEc, LOADc, STOREc, ARRc, GOTOc, IFFc, RETc, FUNCc,
 ENDc, PARAMc, CALLc, ARGc, LABc, HALTc} OpKind;
 
-/* Structure that defines the kind of each address */
-typedef enum{String, IntConst, Empty} AddrKind;
-    /*
+/*
     * String = Variables, temporaries, labbels 
     * IntConst = Immidiates
     * Empty = for an ampty address
     */
-
+/* Structure that defines the kind of each address */
+typedef enum{String, IntConst, Empty} AddrKind;
+    
 /* Structure that defines and describes all relevant info present 
 in the address*/
 typedef struct address{

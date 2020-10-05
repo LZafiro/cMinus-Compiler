@@ -1,6 +1,2 @@
-1 - Arrumar o paramCount e argCount - ok
-2 - Adicionar instrução == (eq) e != (neq) no processador
-3 - Arrumar globais e vetores (no load store tmb)
-    - Vetor passando para funções (?) !
-4 - Arrumar quadrupla de store para arr, colocar indice no ultimo campo - ok
-5 - Arrays locais: 'ARR', addi ultimo campo somando 1 em fp, verificar
+1 - Adicionar instrução == (eq) e != (neq) no processador
+2 - arrumar local do ra no processador, no jal
