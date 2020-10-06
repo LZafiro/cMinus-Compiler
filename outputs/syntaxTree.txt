@@ -1,8 +1,6 @@
   Type integer
     Variável: vet
   Type integer
-    Variável: teste
-  Type integer
     Função minloc
       Type integer
         Parametro: a
@@ -65,11 +63,6 @@
       Atribuição
         Id: i
         Id: low
-      Atribuição
-        Id: teste
-        Op: +
-          Id: teste
-          Const: 1
       While
         Op: <
           Id: i
@@ -107,8 +100,6 @@
       Type void
       Type integer
         Variável: i
-      Type integer
-        Variável: vet2
       Atribuição
         Id: i
         Const: 0
@@ -130,14 +121,6 @@
         Const: 0
         Const: 10
       Atribuição
-        Vetor: vet2
-          Const: 0
-        Const: 1
-      Atribuição
-        Vetor: vet2
-          Const: 1
-        Const: 3
-      Atribuição
         Id: i
         Const: 0
       While
@@ -151,9 +134,4 @@
           Id: i
           Op: +
             Id: i
-            Const: 1
-        Atribuição
-          Id: teste
-          Op: +
-            Id: teste
             Const: 1

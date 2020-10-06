@@ -384,7 +384,7 @@ def generateAsmCodeFile(asmCode):
     labs = {}
 
     # Oppend file
-    with open('asm.txt', 'w') as asmFile:
+    with open('./outputs/assemblyCode.txt', 'w') as asmFile:
         # Initial info
         asmFile.write("%s\n\n" % '..::Assembly Code for ZAFx32 Processor::..')
 
@@ -431,74 +431,18 @@ def generateBinCodeFile(asmCode, labels):
     # Line cont
     cont = 0
 
-    opCode = {
-        'add':  '000000',
-        'addi': '000001',
-        'sub':  '000010',
-        'mul':  '000011',
-        'div':  '000100',
-        'mod':  '000101',
-        'and':  '000110',
-        'or':   '000111',
-        'not':  '001000',
-        'xor':  '001001',
-        'slt':  '001010',
-        'sgt':  '001011',
-        'slet': '001100',
-        'sget': '001101',
-        'lsh':  '001110',
-        'rsh':  '001111',
-        'mov':  '010000',
-        'li':   '010001',
-        'beq':  '010010',
-        'bne':  '010011',
-        'j':    '010100',
-        'in':   '010101',
-        'out':  '010110',
-        'load': '010111',
-        'store':'011000',
-        'jr':   '011001',
-        'jal':  '011010',
-        'halt': '011011'
-    }
+    opCode = ['add', 'addi', 'sub', 'mul', 'div', 'mod', 'and', 'or', 'not', 'xor', 'slt', 'sgt', 'slet',
+              'sget', 'lsh', 'rsh', 'mov', 'li', 'beq', 'bne', 'j', 'in', 'out', 'load', 'store', 'jr',
+              'jal', 'halt'
+            ]
 
-    registers = [
-        'zero',
-        'sp',
-        'fp',
-        'gp',
-        'ra',
-        'ret',
-        'a0',
-        'a1',
-        'a2',
-        'a3',
-        't0',  
-        't1',
-        't2',
-        't3',
-        't4',
-        't5',
-        't6',
-        't7',
-        't8',
-        't9',
-        't10',
-        't11',
-        't12',
-        't13',
-        't14',
-        't15',
-        't16',
-        't17',
-        't18',
-        't19',
-        't20',
-        't21',
-    ]
+    registers = ['zero', 'sp', 'fp', 'gp', 'ra', 'ret', 'a0', 'a1', 'a2', 'a3', 't0', 't1',
+                 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12', 't13',
+                 't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21'
+                ]
 
     # Oppend file
-    with open('bin.txt', 'w') as binFile:
+    with open('./outputs/binaryCode.txt', 'w') as binFile:
 
         # Initial info
         binFile.write("%s\n\n" % '..::Binary Code for ZAFx32 Processor::..')
@@ -512,8 +456,8 @@ def generateBinCodeFile(asmCode, labels):
             # Labbels and halt
             if len(line) == 1:
                 if line[0] == 'halt':
-                    binFile.write("%s\n" % 'MemInst[{}] = {}_{:026b}{:>10}'.format(cont, 
-                                                                                   opCode['halt'], 
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 26\'d{} }}{:>20}'.format(cont, 
+                                                                                   opCode.index('halt'), 
                                                                                    0, 
                                                                                    '//{}'.format('halt')))
                     cont += 1
@@ -523,22 +467,22 @@ def generateBinCodeFile(asmCode, labels):
             elif len(line) == 2:
                 # Jumps
                 if line[0] in {'j', 'jal'}:
-                    binFile.write("%s\n" % 'MemInst[{}] = {}_{:026b}{:>10}'.format(cont, 
-                                                                                   opCode[line[0]], 
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 26\'d{} }}{:>20}'.format(cont, 
+                                                                                   opCode.index(line[0]), 
                                                                                    labels[line[1]], 
                                                                                    '//{}'.format(line[0])))
                     cont += 1
                 else:
-                    binFile.write("%s\n" % 'MemInst[{}] = {}_{:026b}{:>10}'.format(cont, 
-                                                                                   opCode[line[0]], 
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 26\'d{} }}{:>20}'.format(cont, 
+                                                                                   opCode.index(line[0]), 
                                                                                    registers.index(line[1]), 
                                                                                    '//{}'.format(line[0])))
                     cont += 1
 
             elif len(line) == 3:
                 if line[0] == 'li':
-                    binFile.write("%s\n" % 'MemInst[{}] = {}_{:05b}_{:05b}_{:011b}{:>10}'.format(cont,
-                                                                                   opCode[line[0]], 
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 16\'d{} }}{:>10}'.format(cont,
+                                                                                   opCode.index(line[0]), 
                                                                                    0,
                                                                                    registers.index(line[1]),
                                                                                    int(line[2]), 
@@ -546,8 +490,8 @@ def generateBinCodeFile(asmCode, labels):
                     cont += 1
 
                 elif line[0] == 'mov':
-                    binFile.write("%s\n" % 'MemInst[{}] = {}_{:05b}_{:05b}_{:011b}{:>10}'.format(cont,
-                                                                                   opCode[line[0]], 
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 16\'d{} }}{:>10}'.format(cont,
+                                                                                   opCode.index(line[0]), 
                                                                                    registers.index(line[2]),
                                                                                    registers.index(line[1]),
                                                                                    0, 
@@ -555,32 +499,53 @@ def generateBinCodeFile(asmCode, labels):
                     cont += 1
 
             elif len(line) == 4:
-               print(line)
+                # If the last value is a register (R type)
+                if line[3][0] == 't':
+                    # Commun R type instruction 
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 5\'d{}, 11\'d{} }}{:>10}'.format(cont,
+                                                                                   opCode.index(line[0]), 
+                                                                                   registers.index(line[1]),
+                                                                                   registers.index(line[2]),
+                                                                                   registers.index(line[3]),
+                                                                                   0, 
+                                                                                   '//{}'.format(line[0])))
+                    cont += 1
 
+                elif line[3][0] == 'L':
+                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 16\'d{} }}{:>10}'.format(cont,
+                                                                                   opCode.index(line[0]), 
+                                                                                   registers.index(line[1]),
+                                                                                   registers.index(line[2]),
+                                                                                   labels[line[3]], 
+                                                                                   '//{}'.format(line[0])))
+                    cont += 1
+
+                else:
+                    if int(line[3]) < 0:
+                        binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, -16\'d{} }}{:>10}'.format(cont,
+                                                                                    opCode.index(line[0]), 
+                                                                                    registers.index(line[2]),
+                                                                                    registers.index(line[1]),
+                                                                                    abs(int(line[3])), 
+                                                                                    '//{}'.format(line[0])))
+                        cont += 1
+
+                    else:
+                        binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 16\'d{} }}{:>10}'.format(cont,
+                                                                                    opCode.index(line[0]), 
+                                                                                    registers.index(line[2]),
+                                                                                    registers.index(line[1]),
+                                                                                    int(line[3]), 
+                                                                                    '//{}'.format(line[0])))
+                        cont += 1
+                        
 
 def main():
 
-    iCode = getIntermediateCode('../outputs/intermediateCode.txt')
+    iCode = getIntermediateCode('./outputs/intermediateCode.txt')
     asmCode = generateAsmCode(iCode)
     labels = generateAsmCodeFile(asmCode)
     generateBinCodeFile(asmCode, labels)
-
-    '''
-    for quad in iCode:
-        print(quad)
-
-    print()
-    print()
-
-    for asm in asmCode:
-       print(asm)
-
-    print()
-    print()
-
-    locAddr = determineLocalAdddr(iCode)
-    print(locAddr)
-    '''
 
 
 if __name__ == '__main__':

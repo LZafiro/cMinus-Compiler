@@ -4,271 +4,236 @@
 	4: NUM, val= 10
 	4: ]
 	4: ;
-	5: Palavra reservada: INT, Lexema: int
-	5: ID, name= teste
-	5: ;
+	6: Palavra reservada: INT, Lexema: int
+	6: ID, name= minloc
+	6: (
+	6: Palavra reservada: INT, Lexema: int
+	6: ID, name= a
+	6: [
+	6: ]
+	6: ,
+	6: Palavra reservada: INT, Lexema: int
+	6: ID, name= low
+	6: ,
+	6: Palavra reservada: INT, Lexema: int
+	6: ID, name= high
+	6: )
+	7: {
 	7: Palavra reservada: INT, Lexema: int
-	7: ID, name= minloc
-	7: (
+	7: ID, name= i
+	7: ;
 	7: Palavra reservada: INT, Lexema: int
-	7: ID, name= a
-	7: [
-	7: ]
-	7: ,
+	7: ID, name= x
+	7: ;
 	7: Palavra reservada: INT, Lexema: int
-	7: ID, name= low
-	7: ,
-	7: Palavra reservada: INT, Lexema: int
-	7: ID, name= high
-	7: )
-	8: {
-	8: Palavra reservada: INT, Lexema: int
-	8: ID, name= i
-	8: ;
-	8: Palavra reservada: INT, Lexema: int
-	8: ID, name= x
-	8: ;
-	8: Palavra reservada: INT, Lexema: int
+	7: ID, name= k
+	7: ;
 	8: ID, name= k
+	8: =
+	8: ID, name= low
 	8: ;
-	9: ID, name= k
+	9: ID, name= x
 	9: =
+	9: ID, name= a
+	9: [
 	9: ID, name= low
+	9: ]
 	9: ;
-	10: ID, name= x
+	10: ID, name= i
 	10: =
-	10: ID, name= a
-	10: [
 	10: ID, name= low
-	10: ]
+	10: +
+	10: NUM, val= 1
 	10: ;
+	11: Palavra reservada: WHILE, Lexema: while
+	11: (
 	11: ID, name= i
-	11: =
-	11: ID, name= low
-	11: +
-	11: NUM, val= 1
-	11: ;
-	12: Palavra reservada: WHILE, Lexema: while
+	11: <
+	11: ID, name= high
+	11: )
+	11: {
+	12: Palavra reservada: IF, Lexema: if
 	12: (
+	12: ID, name= a
+	12: [
 	12: ID, name= i
+	12: ]
 	12: <
-	12: ID, name= high
+	12: ID, name= x
 	12: )
 	12: {
-	13: Palavra reservada: IF, Lexema: if
-	13: (
+	13: ID, name= x
+	13: =
 	13: ID, name= a
 	13: [
 	13: ID, name= i
 	13: ]
-	13: <
-	13: ID, name= x
-	13: )
-	13: {
-	14: ID, name= x
+	13: ;
+	14: ID, name= k
 	14: =
-	14: ID, name= a
-	14: [
 	14: ID, name= i
-	14: ]
 	14: ;
-	15: ID, name= k
-	15: =
-	15: ID, name= i
-	15: ;
-	16: }
-	17: ID, name= i
-	17: =
-	17: ID, name= i
-	17: +
-	17: NUM, val= 1
-	17: ;
-	18: }
-	19: Palavra reservada: RETURN, Lexema: return
-	19: ID, name= k
-	19: ;
-	20: }
-	22: Palavra reservada: VOID, Lexema: void
-	22: ID, name= sort
-	22: (
+	15: }
+	16: ID, name= i
+	16: =
+	16: ID, name= i
+	16: +
+	16: NUM, val= 1
+	16: ;
+	17: }
+	18: Palavra reservada: RETURN, Lexema: return
+	18: ID, name= k
+	18: ;
+	19: }
+	21: Palavra reservada: VOID, Lexema: void
+	21: ID, name= sort
+	21: (
+	21: Palavra reservada: INT, Lexema: int
+	21: ID, name= a
+	21: [
+	21: ]
+	21: ,
+	21: Palavra reservada: INT, Lexema: int
+	21: ID, name= low
+	21: ,
+	21: Palavra reservada: INT, Lexema: int
+	21: ID, name= high
+	21: )
+	22: {
 	22: Palavra reservada: INT, Lexema: int
-	22: ID, name= a
-	22: [
-	22: ]
-	22: ,
+	22: ID, name= i
+	22: ;
 	22: Palavra reservada: INT, Lexema: int
-	22: ID, name= low
-	22: ,
-	22: Palavra reservada: INT, Lexema: int
-	22: ID, name= high
-	22: )
-	23: {
-	23: Palavra reservada: INT, Lexema: int
+	22: ID, name= k
+	22: ;
 	23: ID, name= i
+	23: =
+	23: ID, name= low
 	23: ;
-	23: Palavra reservada: INT, Lexema: int
-	23: ID, name= k
-	23: ;
+	24: Palavra reservada: WHILE, Lexema: while
+	24: (
 	24: ID, name= i
-	24: =
-	24: ID, name= low
-	24: ;
-	25: ID, name= teste
-	25: =
-	25: ID, name= teste
-	25: +
-	25: NUM, val= 1
+	24: <
+	24: ID, name= high
+	24: -
+	24: NUM, val= 1
+	24: )
+	24: {
+	25: Palavra reservada: INT, Lexema: int
+	25: ID, name= t
 	25: ;
-	26: Palavra reservada: WHILE, Lexema: while
+	26: ID, name= k
+	26: =
+	26: ID, name= minloc
 	26: (
+	26: ID, name= a
+	26: ,
 	26: ID, name= i
-	26: <
+	26: ,
 	26: ID, name= high
-	26: -
-	26: NUM, val= 1
 	26: )
-	26: {
-	27: Palavra reservada: INT, Lexema: int
+	26: ;
 	27: ID, name= t
+	27: =
+	27: ID, name= a
+	27: [
+	27: ID, name= k
+	27: ]
 	27: ;
-	28: ID, name= k
-	28: =
-	28: ID, name= minloc
-	28: (
 	28: ID, name= a
-	28: ,
+	28: [
+	28: ID, name= k
+	28: ]
+	28: =
+	28: ID, name= a
+	28: [
 	28: ID, name= i
-	28: ,
-	28: ID, name= high
-	28: )
+	28: ]
 	28: ;
-	29: ID, name= t
-	29: =
 	29: ID, name= a
 	29: [
-	29: ID, name= k
+	29: ID, name= i
 	29: ]
+	29: =
+	29: ID, name= t
 	29: ;
-	30: ID, name= a
-	30: [
-	30: ID, name= k
-	30: ]
-	30: =
-	30: ID, name= a
-	30: [
 	30: ID, name= i
-	30: ]
+	30: =
+	30: ID, name= i
+	30: +
+	30: NUM, val= 1
 	30: ;
-	31: ID, name= a
-	31: [
-	31: ID, name= i
-	31: ]
-	31: =
-	31: ID, name= t
-	31: ;
-	32: ID, name= i
-	32: =
-	32: ID, name= i
-	32: +
-	32: NUM, val= 1
-	32: ;
-	33: }
-	34: }
-	36: Palavra reservada: VOID, Lexema: void
-	36: ID, name= main
-	36: (
-	36: Palavra reservada: VOID, Lexema: void
-	36: )
-	37: {
-	38: Palavra reservada: INT, Lexema: int
+	31: }
+	32: }
+	34: Palavra reservada: VOID, Lexema: void
+	34: ID, name= main
+	34: (
+	34: Palavra reservada: VOID, Lexema: void
+	34: )
+	35: {
+	36: Palavra reservada: INT, Lexema: int
+	36: ID, name= i
+	36: ;
+	37: ID, name= i
+	37: =
+	37: NUM, val= 0
+	37: ;
+	38: Palavra reservada: WHILE, Lexema: while
+	38: (
 	38: ID, name= i
-	38: ;
-	39: Palavra reservada: INT, Lexema: int
-	39: ID, name= vet2
+	38: <
+	38: NUM, val= 10
+	38: )
+	38: {
+	39: ID, name= vet
 	39: [
-	39: NUM, val= 2
+	39: ID, name= i
 	39: ]
+	39: =
+	39: ID, name= input
+	39: (
+	39: )
 	39: ;
 	40: ID, name= i
 	40: =
-	40: NUM, val= 0
+	40: ID, name= i
+	40: +
+	40: NUM, val= 1
 	40: ;
-	41: Palavra reservada: WHILE, Lexema: while
-	41: (
-	41: ID, name= i
-	41: <
-	41: NUM, val= 10
-	41: )
-	41: {
-	42: ID, name= vet
-	42: [
-	42: ID, name= i
-	42: ]
-	42: =
-	42: ID, name= input
+	41: }
+	42: ID, name= sort
 	42: (
+	42: ID, name= vet
+	42: ,
+	42: NUM, val= 0
+	42: ,
+	42: NUM, val= 10
 	42: )
 	42: ;
 	43: ID, name= i
 	43: =
-	43: ID, name= i
-	43: +
-	43: NUM, val= 1
+	43: NUM, val= 0
 	43: ;
-	44: }
-	45: ID, name= sort
+	44: Palavra reservada: WHILE, Lexema: while
+	44: (
+	44: ID, name= i
+	44: <
+	44: NUM, val= 10
+	44: )
+	44: {
+	45: ID, name= output
 	45: (
 	45: ID, name= vet
-	45: ,
-	45: NUM, val= 0
-	45: ,
-	45: NUM, val= 10
+	45: [
+	45: ID, name= i
+	45: ]
 	45: )
 	45: ;
-	46: ID, name= vet2
-	46: [
-	46: NUM, val= 0
-	46: ]
+	46: ID, name= i
 	46: =
+	46: ID, name= i
+	46: +
 	46: NUM, val= 1
 	46: ;
-	47: ID, name= vet2
-	47: [
-	47: NUM, val= 1
-	47: ]
-	47: =
-	47: NUM, val= 3
-	47: ;
-	48: ID, name= i
-	48: =
-	48: NUM, val= 0
-	48: ;
-	49: Palavra reservada: WHILE, Lexema: while
-	49: (
-	49: ID, name= i
-	49: <
-	49: NUM, val= 10
-	49: )
-	49: {
-	50: ID, name= output
-	50: (
-	50: ID, name= vet
-	50: [
-	50: ID, name= i
-	50: ]
-	50: )
-	50: ;
-	51: ID, name= i
-	51: =
-	51: ID, name= i
-	51: +
-	51: NUM, val= 1
-	51: ;
-	52: ID, name= teste
-	52: =
-	52: ID, name= teste
-	52: +
-	52: NUM, val= 1
-	52: ;
-	53: }
-	54: }
+	47: }
+	48: }

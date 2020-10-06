@@ -2,7 +2,6 @@
    uma matriz com dez elementos. */
 
 int vet[ 10 ];
-int teste;
 
 int minloc ( int a[], int low, int high )
 {	int i; int x; int k;
@@ -22,7 +21,6 @@ int minloc ( int a[], int low, int high )
 void sort( int a[], int low, int high)
 {	int i; int k;
 	i = low;
-	teste = teste + 1;
 	while (i < high-1){
 		int t;
 		k = minloc(a,i,high);
@@ -36,20 +34,16 @@ void sort( int a[], int low, int high)
 void main(void)
 {
 	int i;
-	int vet2[2];
 	i = 0;
 	while (i < 10){
 		vet[i] = input();
 		i = i + 1;
 	}
 	sort(vet,0,10);
-	vet2[0] = 1;
-	vet2[1] = 3;
 	i = 0;
 	while (i < 10){
 		output(vet[i]);
 		i = i + 1;
-		teste = teste + 1;
 	}
 }
 
