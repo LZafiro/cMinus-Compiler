@@ -3,6 +3,6 @@
 cd ./source
 make
 cd ..
-./cmin entrada.txt
+./cmin entrada.cmin
 python3 ./source/assemblyAndBin-Generator.py
 

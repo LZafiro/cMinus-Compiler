@@ -1,4 +1,5 @@
 1 - Adicionar instrução == (eq) e != (neq) no processador
+3 - Adicionar mod no compilador
 2 - arrumar local do ra no processador, no jal
 
 

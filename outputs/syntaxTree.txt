@@ -1,137 +1,26 @@
-  Type integer
-    Variável: vet
-  Type integer
-    Função minloc
-      Type integer
-        Parametro: a
-      Type integer
-        Parametro: low
-      Type integer
-        Parametro: high
-      Type integer
-        Variável: i
-      Type integer
-        Variável: x
-      Type integer
-        Variável: k
-      Atribuição
-        Id: k
-        Id: low
-      Atribuição
-        Id: x
-        Vetor: a
-          Id: low
-      Atribuição
-        Id: i
-        Op: +
-          Id: low
-          Const: 1
-      While
-        Op: <
-          Id: i
-          Id: high
-        If
-          Op: <
-            Vetor: a
-              Id: i
-            Id: x
-          Atribuição
-            Id: x
-            Vetor: a
-              Id: i
-          Atribuição
-            Id: k
-            Id: i
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
-      Retorno        Id: k
-  Type void
-    Função sort
-      Type integer
-        Parametro: a
-      Type integer
-        Parametro: low
-      Type integer
-        Parametro: high
-      Type integer
-        Variável: i
-      Type integer
-        Variável: k
-      Atribuição
-        Id: i
-        Id: low
-      While
-        Op: <
-          Id: i
-          Op: -
-            Id: high
-            Const: 1
-        Type integer
-          Variável: t
-        Atribuição
-          Id: k
-          Chamada de Função: minloc 
-            Id: a
-            Id: i
-            Id: high
-        Atribuição
-          Id: t
-          Vetor: a
-            Id: k
-        Atribuição
-          Vetor: a
-            Id: k
-          Vetor: a
-            Id: i
-        Atribuição
-          Vetor: a
-            Id: i
-          Id: t
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
   Type void
     Função main
       Type void
       Type integer
-        Variável: i
+        Variável: a
+      Type integer
+        Variável: b
+      Type integer
+        Variável: c
       Atribuição
-        Id: i
-        Const: 0
-      While
-        Op: <
-          Id: i
-          Const: 10
-        Atribuição
-          Vetor: vet
-            Id: i
-          Chamada de Função: input 
-        Atribuição
-          Id: i
-          Op: +
-            Id: i
-            Const: 1
-      Chamada de Função: sort 
-        Id: vet
-        Const: 0
-        Const: 10
+        Id: a
+        Chamada de Função: input 
       Atribuição
-        Id: i
-        Const: 0
-      While
-        Op: <
-          Id: i
-          Const: 10
-        Chamada de Função: output 
-          Vetor: vet
-            Id: i
-        Atribuição
-          Id: i
+        Id: b
+        Chamada de Função: input 
+      Atribuição
+        Id: c
+        Op: *
           Op: +
-            Id: i
-            Const: 1
+            Id: a
+            Id: b
+          Op: -
+            Id: a
+            Id: b
+      Chamada de Função: output 
+        Id: c

@@ -28,7 +28,7 @@ typedef struct address{
         int val;
         struct{
             char *name;
-            char *scope; /* Verify */
+            char *scope;
         } var;
     } contents;
 } *Address;
@@ -39,9 +39,9 @@ typedef struct quadruple{
     Address addr1, addr2, addr3;
 } *Quadruple; 
 
-/* Structure thar defines a unidiractional list of quadruples */
+/* Structure thar defines a unidirectional list of quadruples */
 typedef struct QuadListElem{
-    int location; /* Verify */
+    int location; 
     Quadruple quadruple;
     struct QuadListElem *next;
 } *QuadrupleListElem;

@@ -1,221 +1,36 @@
 ..::Assembly Code for ZAFx32 Processor::..
 
-0:          li sp, 0
+0:          li sp, -1
 1:          li fp, 0
 2:          li zero, 0
-3:          li gp, 69
+3:          li gp, 249
 4:          j main
-.minloc
-5:          addi sp, sp, 2
-6:          store fp, sp, -2
-7:          mov fp, sp
-8:          store ra, sp, -1
-9:          addi sp, sp, 1
-10:         store a0, sp, 0
-11:         addi sp, sp, 1
-12:         store a1, sp, 0
-13:         addi sp, sp, 1
-14:         store a2, sp, 0
-15:         addi sp, sp, 1
-16:         addi sp, sp, 1
-17:         addi sp, sp, 1
-18:         load t0, fp, 5
-19:         load t1, fp, 1
-20:         mov t0, t1
-21:         store t0, fp, 5
-22:         load t2, fp, 4
-23:         load t3, fp, 1
-24:         load t4, fp, 0
-25:         add t3, t4, t3
-26:         load t4, t3, 0
-27:         mov t2, t4
-28:         store t2, fp, 4
-29:         load t5, fp, 3
-30:         load t6, fp, 1
-31:         li t7, 1
-32:         add t8, t6, t7
-33:         mov t5, t8
-34:         store t5, fp, 3
-.L0
-35:         load t9, fp, 3
-36:         load t10, fp, 2
-37:         slt t11, t9, t10
-38:         beq t11, zero, L1
-39:         load t12, fp, 3
-40:         load t13, fp, 0
-41:         add t12, t13, t12
-42:         load t13, t12, 0
-43:         load t14, fp, 4
-44:         slt t15, t13, t14
-45:         beq t15, zero, L2
-46:         load t16, fp, 4
-47:         load t17, fp, 3
-48:         load t18, fp, 0
-49:         add t17, t18, t17
-50:         load t18, t17, 0
-51:         mov t16, t18
-52:         store t16, fp, 4
-53:         load t19, fp, 5
-54:         load t20, fp, 3
-55:         mov t19, t20
-56:         store t19, fp, 5
-57:         j L3
-.L2
-.L3
-58:         load t21, fp, 3
-59:         load t0, fp, 3
-60:         li t1, 1
-61:         add t2, t0, t1
-62:         mov t21, t2
-63:         store t21, fp, 3
-64:         j L0
-.L1
-65:         load t3, fp, 5
-66:         mov ret, t3
-67:         addi fp, fp, -2
-68:         load ra, fp, 1
-69:         mov sp, fp
-70:         addi sp, sp, -1
-71:         load fp, fp, 0
-72:         jr ra
-73:         addi fp, fp, -2
-74:         load ra, fp, 1
-75:         mov sp, fp
-76:         addi sp, sp, -1
-77:         load fp, fp, 0
-78:         jr ra
-.sort
-79:         addi sp, sp, 2
-80:         store fp, sp, -2
-81:         mov fp, sp
-82:         store ra, sp, -1
-83:         addi sp, sp, 1
-84:         store a0, sp, 0
-85:         addi sp, sp, 1
-86:         store a1, sp, 0
-87:         addi sp, sp, 1
-88:         store a2, sp, 0
-89:         addi sp, sp, 1
-90:         addi sp, sp, 1
-91:         load t4, fp, 3
-92:         load t5, fp, 1
-93:         mov t4, t5
-94:         store t4, fp, 3
-.L4
-95:         load t6, fp, 3
-96:         load t7, fp, 2
-97:         li t8, 1
-98:         sub t9, t7, t8
-99:         slt t10, t6, t9
-100:        beq t10, zero, L5
-101:        addi sp, sp, 1
-102:        load t11, fp, 4
-103:        load t12, fp, 0
-104:        mov a0, t12
-105:        load t13, fp, 3
-106:        mov a1, t13
-107:        load t14, fp, 2
-108:        mov a2, t14
-109:        jal minloc
-110:        mov t15, ret
-111:        mov t11, t15
-112:        store t11, fp, 4
-113:        load t16, fp, 5
-114:        load t17, fp, 4
-115:        load t18, fp, 0
-116:        add t17, t18, t17
-117:        load t18, t17, 0
-118:        mov t16, t18
-119:        store t16, fp, 5
-120:        load t19, fp, 4
-121:        load t20, fp, 0
-122:        add t19, t20, t19
-123:        load t20, t19, 0
-124:        load t21, fp, 3
-125:        load t0, fp, 0
-126:        add t21, t0, t21
-127:        load t0, t21, 0
-128:        mov t20, t0
-129:        store t20, t19, 0
-130:        load t1, fp, 3
-131:        load t2, fp, 0
-132:        add t1, t2, t1
-133:        load t2, t1, 0
-134:        load t3, fp, 5
-135:        mov t2, t3
-136:        store t2, t1, 0
-137:        load t4, fp, 3
-138:        load t5, fp, 3
-139:        li t6, 1
-140:        add t7, t5, t6
-141:        mov t4, t7
-142:        store t4, fp, 3
-143:        j L4
-.L5
-144:        addi fp, fp, -2
-145:        load ra, fp, 1
-146:        mov sp, fp
-147:        addi sp, sp, -1
-148:        load fp, fp, 0
-149:        jr ra
 .main
-150:        addi sp, sp, 1
-151:        load t8, fp, 0
-152:        li t9, 0
-153:        mov t8, t9
-154:        store t8, fp, 0
-.L6
-155:        load t10, fp, 0
-156:        li t11, 10
-157:        slt t12, t10, t11
-158:        beq t12, zero, L7
-159:        load t13, fp, 0
-160:        add t13, gp, t13
-161:        addi t13, t13, 0
-162:        load t14, t13, 0
-163:        in t15
-164:        mov t14, t15
-165:        store t14, t13, 0
-166:        load t16, fp, 0
-167:        load t17, fp, 0
-168:        li t18, 1
-169:        add t19, t17, t18
-170:        mov t16, t19
-171:        store t16, fp, 0
-172:        j L6
-.L7
-173:        addi t20, gp, 0
-174:        mov a0, t20
-175:        li t21, 0
-176:        mov a1, t21
-177:        li t0, 10
-178:        mov a2, t0
-179:        jal sort
-180:        mov t1, ret
-181:        load t2, fp, 0
-182:        li t3, 0
-183:        mov t2, t3
-184:        store t2, fp, 0
-.L8
-185:        load t4, fp, 0
-186:        li t5, 10
-187:        slt t6, t4, t5
-188:        beq t6, zero, L9
-189:        load t7, fp, 0
-190:        add t7, gp, t7
-191:        addi t7, t7, 0
-192:        load t8, t7, 0
-193:        mov a0, t8
-194:        mov t9, a0
-195:        out t9
-196:        load t10, fp, 0
-197:        load t11, fp, 0
-198:        li t12, 1
-199:        add t13, t11, t12
-200:        mov t10, t13
-201:        store t10, fp, 0
-202:        j L8
-.L9
-203:        j end
+5:          addi sp, sp, 1
+6:          addi sp, sp, 1
+7:          addi sp, sp, 1
+8:          load t0, fp, 0
+9:          in t1
+10:         mov t0, t1
+11:         store t0, fp, 0
+12:         load t2, fp, 1
+13:         in t3
+14:         mov t2, t3
+15:         store t2, fp, 1
+16:         load t4, fp, 2
+17:         load t5, fp, 0
+18:         load t6, fp, 1
+19:         add t7, t5, t6
+20:         load t8, fp, 0
+21:         load t9, fp, 1
+22:         sub t10, t8, t9
+23:         mul t11, t7, t10
+24:         mov t4, t11
+25:         store t4, fp, 2
+26:         load t12, fp, 2
+27:         mov a0, t12
+28:         mov t13, a0
+29:         out t13
+30:         j end
 .end
-204:        halt
+31:         halt

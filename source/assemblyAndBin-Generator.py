@@ -1,4 +1,4 @@
-# Assembly code generator for cMinus Compiler (ZAFx32 architecture)
+# Assembly and binary code generators for cMinus Compiler (ZAFx32 architecture)
 
 # Imports
 ######################################################################
@@ -9,8 +9,8 @@ from nltk.tokenize import word_tokenize
 
 # Global variables
 ######################################################################
-MEM_SIZE = 100 # RAM size of processor
-GLOBAL_SIZE = 30 # Size of global allocation space 
+MEM_SIZE = 300 # RAM size of processor
+GLOBAL_SIZE = 50 # Size of global allocation space 
 ######################################################################
 
 
@@ -102,7 +102,7 @@ def generateAsmCode(iCode):
     # Code initialization
     ##########################################################
     # Initialize $sp -> stack pointer
-    asmCode.append( ['li', 'sp', '0', '-'] )
+    asmCode.append( ['li', 'sp', '-1', '-'] )
     # Initialize fp -> frame pointer
     asmCode.append( ['li', 'fp', '0', '-'] )
     # Initialize zero 
@@ -280,10 +280,10 @@ def generateAsmCode(iCode):
             '''
             func:
                 addi sp, sp, 2
+                store ra, 0(sp)
                 store fp, -1(sp)
                 mov fp, sp
-                addi fp, fp, -1
-                store ra, 0(sp)
+                addi fp, fp, 1 
             '''
             paramCount = 0
             argCount = 0
@@ -291,15 +291,15 @@ def generateAsmCode(iCode):
             asmCode.append( [quad[1].lower(), '-', '-', '-'] )
             if quad[1] != 'main':
                 asmCode.append( ['addi', 'sp', 'sp', '2'] )
-                asmCode.append( ['store', 'fp', 'sp', '-2'] )
+                asmCode.append( ['store', 'ra', 'sp', '0'] )
+                asmCode.append( ['store', 'fp', 'sp', '-1'] )
                 asmCode.append( ['mov', 'fp', 'sp', '-'] )
-                asmCode.append( ['store', 'ra', 'sp', '-1'] )
+                asmCode.append( ['addi', 'fp', 'fp', '1'] )
 
         elif quad[0] == 'END':
             '''
             If not main:
 
-            mov ret, tx
             addi fp, fp, -2
             load ra, (1)fp
             mov sp, fp
@@ -383,7 +383,7 @@ def generateAsmCodeFile(asmCode):
     # Dict for all labels lines
     labs = {}
 
-    # Oppend file
+    # Open file
     with open('./outputs/assemblyCode.txt', 'w') as asmFile:
         # Initial info
         asmFile.write("%s\n\n" % '..::Assembly Code for ZAFx32 Processor::..')
@@ -433,7 +433,7 @@ def generateBinCodeFile(asmCode, labels):
 
     opCode = ['add', 'addi', 'sub', 'mul', 'div', 'mod', 'and', 'or', 'not', 'xor', 'slt', 'sgt', 'slet',
               'sget', 'lsh', 'rsh', 'mov', 'li', 'beq', 'bne', 'j', 'in', 'out', 'load', 'store', 'jr',
-              'jal', 'halt'
+              'jal', 'halt', 'eq', 'neq'
             ]
 
     registers = ['zero', 'sp', 'fp', 'gp', 'ra', 'ret', 'a0', 'a1', 'a2', 'a3', 't0', 't1',
@@ -441,7 +441,7 @@ def generateBinCodeFile(asmCode, labels):
                  't14', 't15', 't16', 't17', 't18', 't19', 't20', 't21'
                 ]
 
-    # Oppend file
+    # Open file
     with open('./outputs/binaryCode.txt', 'w') as binFile:
 
         # Initial info
@@ -541,7 +541,6 @@ def generateBinCodeFile(asmCode, labels):
                         
 
 def main():
-
     iCode = getIntermediateCode('./outputs/intermediateCode.txt')
     asmCode = generateAsmCode(iCode)
     labels = generateAsmCodeFile(asmCode)
