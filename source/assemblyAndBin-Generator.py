@@ -481,12 +481,20 @@ def generateBinCodeFile(asmCode, labels):
 
             elif len(line) == 3:
                 if line[0] == 'li':
-                    binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 16\'d{} }}{:>10}'.format(cont,
-                                                                                   opCode.index(line[0]), 
-                                                                                   0,
-                                                                                   registers.index(line[1]),
-                                                                                   int(line[2]), 
-                                                                                   '//{}'.format(line[0])))
+                    if int(line[2]) < 0:
+                        binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, -16\'d{} }}{:>10}'.format(cont,
+                                                                                    opCode.index(line[0]), 
+                                                                                    0,
+                                                                                    registers.index(line[1]),
+                                                                                    abs(int(line[2])), 
+                                                                                    '//{}'.format(line[0])))
+                    else:
+                        binFile.write("%s\n" % 'MemInst[{}] = {{ 6\'d{}, 5\'d{}, 5\'d{}, 16\'d{} }}{:>10}'.format(cont,
+                                                                                    opCode.index(line[0]), 
+                                                                                    0,
+                                                                                    registers.index(line[1]),
+                                                                                    int(line[2]), 
+                                                                                    '//{}'.format(line[0])))
                     cont += 1
 
                 elif line[0] == 'mov':
